@@ -21,6 +21,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
   </head>
+
   <body>
     <section class="bg-dark2 d-md-none d-block">
       <div class="container-fluid">
@@ -52,131 +53,85 @@
         <div class="col-lg-10 col-md-9 offset-md-3 offset-lg-2" id="main">
           <h1 class="main-title pt-4">ChalkBoard</h1>
           <hr />
-
           <div class="row">
-            <div class="col-md-12">
-              <div class="jumbotron">
-                <h2>Courses</h2>
-                <hr class="my-4" />
-                <label class="btn btn-primary mt-3">Current Courses</label>
-                <label class="btn btn-success mt-3">Previous Courses</label>
-                <label class="btn btn-danger mt-3">Upcoming Courses</label>
-              </div>
-            </div>
-          </div>
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+              <div class="card mt-4">
+                <div class="card-body">
+                  <a
+                    href=""
+                    class="float-right btn btn-outline-primary"
+                    data-toggle="modal"
+                    data-target="#registermodal"
+                    >Sign up</a
+                  >
+                  <h5 class="card-title mb-4 mt-1">Sign In</h5>
+                  <form id="login">
+                    <label>Your email</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                      <input
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Email Address"
+                        type="email"
+                        required
+                      />
+                    </div>
 
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card mb-5">
-                <img
-                  class="card-img-top img-fluid"
-                  src="assets/images/2.jpg"
-                  alt="img"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Previous Semester</h5>
-                  <p class="card-text f500 text-secondary mb-3 pt-2">
-                    Subjects
-                  </p>
+                    <label class="mt-4">Your password</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fa fa-lock"></i>
+                        </span>
+                      </div>
+                      <input
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="******"
+                        type="password"
+                        required
+                      />
+                    </div>
 
-                  <ul class="list text-primary f500 mb-2">
-                    <li>Data Structure</li>
-                    <li>Linear Algebra</li>
-                    <li>Computer Architecture</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card mb-5">
-                <img
-                  class="card-img-top img-fluid"
-                  src="assets/images/1.jpg"
-                  alt="img"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Current Semester</h5>
-                  <p class="card-text f500 text-secondary mb-3 pt-2">
-                    Subjects
-                  </p>
-
-                  <ul class="list text-primary f500 mb-2">
-                    <li>Internet & Web Technologies</li>
-                    <li>Software Engineering</li>
-                    <li>Algorithm Design</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card mb-5">
-                <img
-                  class="card-img-top img-fluid"
-                  src="assets/images/3.jpg"
-                  alt="img"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Upcoming Semester</h5>
-                  <p class="card-text f500 text-secondary mb-3 pt-2">
-                    Subjects
-                  </p>
-
-                  <ul class="list text-primary f500 mb-2">
-                    <li>Elementery Spanish II</li>
-                    <li>Genetic Algorithm</li>
-                    <li>Probability and Statictic</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row pb-md-4">
-            <div class="col-md-6 mb-5">
-              <div class="card w-100">
-                <div class="card-header bg-danger">
-                  <h4 class="card-title mb-0 text-white">
-                    <i class="fa fa-bullhorn"></i> Due Today
-                  </h4>
-                </div>
-                <div class="card-body">
-                  <h5>Internet & Web Technologies</h5>
-                  <div class="d-flex justify-content-between">
-                    <p class="text-primary f500 mb-1">Zybook:Ch 13 - Node.js</p>
-                    <p class="text-secondary f500 mb-1">100 pts</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div class="card w-100">
-                <div class="card-header bg-warning">
-                  <h4 class="card-title mb-0 text-white">Due Tomorrow</h4>
-                </div>
-                <div class="card-body">
-                  <h5>Internet & Web Technologies</h5>
-                  <div class="d-flex justify-content-between">
-                    <p class="text-primary f500 mb-1">Js Assesment Part 2</p>
-                    <p class="text-secondary f500 mb-1">25 pts</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-5">
-              <div class="card w-100">
-                <div class="card-header bg-success">
-                  <h4 class="card-title mb-0 text-white">Future Due</h4>
-                </div>
-                <div class="card-body">
-                  <h5>Internet & Web Technologies</h5>
-                  <div class="d-flex justify-content-between">
-                    <p class="text-primary f500 mb-1">Zybook:Ch 13 - Node.js</p>
-                    <p class="text-secondary f500 mb-1">100 pts</p>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <p class="text-primary f500 mb-1">Js Assesment Part 2</p>
-                    <p class="text-secondary f500 mb-1">25 pts</p>
-                  </div>
+                    <div class="form-check-inline mt-3">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          checked
+                          name="optradio"
+                          value="Student"
+                        />Student
+                      </label>
+                    </div>
+                    <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          class="form-check-input"
+                          name="optradio"
+                          value="Staff"
+                        />Staff
+                      </label>
+                    </div>
+                    <div class="form-group mt-3">
+                      <button type="submit" class="btn btn-primary btn-block">
+                        Login
+                      </button>
+                    </div>
+                    <div class="form-group mt-4">
+                      <a href="" class="d-block text-center"
+                        >Forgot Password?</a
+                      >
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -204,49 +159,53 @@
                 class="logo d-md-block d-none"
               />
             </a>
+            <!-- <a href="login.html" class="nav-link">
+              <i class="fa fa-user"></i>
+              Login
+            </a> -->
 
-            <div id="important" style="display: none;">
-              <a href="home.html" class="nav-link">
-                <i class="fa fa-cogs"></i>
-                Student Portal
-              </a>
+            <!-- <a href="home.html" class="nav-link">
+              <i class="fa fa-cogs"></i>
+              Student Portal
+            </a> -->
 
-              <a href="grades.html" class="nav-link">
-                <i class="fa fa-calculator"></i>
-                Grades
-              </a>
+            <!-- <a href="grades.html" class="nav-link">
+              <i class="fa fa-calculator"></i>
+              Grades
+            </a> -->
 
-              <a href="courses.html" class="nav-link">
-                <i class="fa fa-bar-chart"></i>
-                Course
-              </a>
-              <a href="register.html" class="nav-link">
-                <i class="fa fa-lock"></i>
-                Register
-              </a>
-            </div>
-            <div id="general" style="display: block;">
-              <a href="login.html" class="nav-link">
-                <i class="fa fa-user"></i>
-                Login
-              </a>
-           
-            </div>
+            <!-- <a href="courses.html" class="nav-link">
+              <i class="fa fa-bar-chart"></i>
+              Course
+            </a> -->
 
-            <p
-              onclick="handleLogout()"
-              style="display: none; cursor: pointer"
-              id="logout"
-              class="nav-link"
-            >
+            <!-- <a href="register.html" class="nav-link">
               <i class="fa fa-lock"></i>
-              Logout
+              Register
+            </a> -->
+            <p class="nav-link">
+              <i class="fa fa-arrow-right"></i></fas>
+              Signin or Signup to Continue
             </p>
+
+            <!-- <a href="instructor-portal.html" class="nav-link">
+              <i class="fa fa-database"></i>
+              Instructor Portal
+            </a>
+            <a href="roaster.html" class="nav-link">
+              <i class="fa fa-comments-o"></i>
+              Roaster
+            </a> -->
+
+            <!-- <a href="faculty.html" class="nav-link">
+              <i class="fa fa-user-circle"></i>
+              Faculty
+            </a> -->
           </div>
           <div class="bottom-sidebar d-md-block d-none">
             <p>
               <i class="fa fa fa-envelope-o"></i
-              ><a href="mailto:example@gmail.com">Email Us</a>
+              ><a href="mailto:example@gmail.com">Email us</a>
             </p>
             <p>&copy;2021 - All Rights Reserved.</p>
           </div>
@@ -272,20 +231,150 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+    <div
+      class="modal fade"
+      id="registermodal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card border-0">
+              <div class="card-body pb-0">
+                <form id="signup">
+                  <div class="form-group">
+                    <label>First Name</label>
+                    <input
+                      name="firstName"
+                      id="firstName"
+                      class="form-control"
+                      placeholder="First Name"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Last Name</label>
+                    <input
+                      name="lastName"
+                      id="lastName"
+                      class="form-control"
+                      placeholder="Last Name"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Your email</label>
+                    <input
+                      name="signupEmail"
+                      id="signupEmail"
+                      class="form-control"
+                      placeholder="Email"
+                      type="email"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input
+                      name="signupPassword"
+                      id="signupPassword"
+                      class="form-control"
+                      placeholder="*******"
+                      type="password"
+                      required
+                    />
+                  </div>
+                  <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Register Now
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
-      const data = localStorage.getItem("User");
-      const user = JSON.parse(data);
-      // console.log(user)
-      if (user) {
-        document.getElementById("important").style.display = "block";
-        document.getElementById("general").style.display = "none";
-        document.getElementById("logout").style.display = "block";
+      const signupForm = document.getElementById("signup");
+      signupForm.addEventListener("submit", signup);
+
+      async function signup(event) {
+        event.preventDefault();
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("signupEmail").value;
+        const password = document.getElementById("signupPassword").value;
+
+        // console.log(email, password, optradio);
+
+        const result = await fetch("https://evening-beyond-02444.herokuapp.com/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+          }),
+        }).then((res) => res.json());
+        alert(result.message);
+        const user = result.user;
+        location.href = "login.html";
       }
 
-      const handleLogout = () => {
-        localStorage.clear();
-        location.reload();
-      };
+      const loginForm = document.getElementById("login");
+      loginForm.addEventListener("submit", login);
+
+      async function login(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const optradio = document.querySelector(
+          'input[name="optradio"]:checked'
+        ).value;
+        // console.log(email, password, optradio);
+
+        const result = await fetch("https://evening-beyond-02444.herokuapp.com/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            optradio,
+          }),
+        }).then((res) => res.json());
+        alert(result.message);
+        const user = result.user;
+        localStorage.setItem("User", JSON.stringify(user));
+        console.log(result.message)
+        if(result.message === "Login Succes"){
+          location.href = "studentPortal.html";
+        }else if(result.message === "Sorry You are not a user" || "Wrong Credentials"){
+          location.href = "home.html";
+        }
+      }
 
       $(".click").click(function () {
         $("#sticky-sidebar").toggle();
