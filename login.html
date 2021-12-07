@@ -27,7 +27,7 @@
       <div class="container-fluid">
         <div class="row mobile-nav">
           <div class="col-8">
-            <a href="home.html" class="nav-link">
+            <a href="login.html" class="nav-link">
               <img
                 src="assets/images/logo.png"
                 alt="img"
@@ -99,28 +99,6 @@
                         required
                       />
                     </div>
-
-                    <div class="form-check-inline mt-3">
-                      <label class="form-check-label">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          checked
-                          name="optradio"
-                          value="Student"
-                        />Student
-                      </label>
-                    </div>
-                    <div class="form-check-inline">
-                      <label class="form-check-label">
-                        <input
-                          type="radio"
-                          class="form-check-input"
-                          name="optradio"
-                          value="Staff"
-                        />Staff
-                      </label>
-                    </div>
                     <div class="form-group mt-3">
                       <button type="submit" class="btn btn-primary btn-block">
                         Login
@@ -152,7 +130,7 @@
               custom-nav
             "
           >
-            <a href="home.html" class="nav-link">
+            <a href="login.html" class="nav-link">
               <img
                 src="assets/images/logo.png"
                 alt="img"
@@ -164,7 +142,7 @@
               Login
             </a> -->
 
-            <!-- <a href="home.html" class="nav-link">
+            <!-- <a href="login.html" class="nav-link">
               <i class="fa fa-cogs"></i>
               Student Portal
             </a> -->
@@ -300,8 +278,29 @@
                       required
                     />
                   </div>
+                  <div class="form-check-inline mt-3">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        checked
+                        name="role"
+                        value="student"
+                      />Student
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input
+                        type="radio"
+                        class="form-check-input"
+                        name="role"
+                        value="professor"
+                      />Professor
+                    </label>
+                  </div>
                   <div class="form-group mt-4">
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <button type="s" class="btn btn-primary btn-block">
                       Register Now
                     </button>
                   </div>
@@ -322,9 +321,11 @@
         const lastName = document.getElementById("lastName").value;
         const email = document.getElementById("signupEmail").value;
         const password = document.getElementById("signupPassword").value;
+        const role = document.querySelector('input[name="role"]:checked').value;  
+        // console.log(firstName, lastName, email, password, role);
 
-        // console.log(email, password, optradio);
 
+        // https://evening-beyond-02444.herokuapp.com
         const result = await fetch("https://evening-beyond-02444.herokuapp.com/signup", {
           method: "POST",
           headers: {
@@ -335,6 +336,7 @@
             lastName,
             email,
             password,
+            role
           }),
         }).then((res) => res.json());
         alert(result.message);
@@ -349,9 +351,7 @@
         event.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        const optradio = document.querySelector(
-          'input[name="optradio"]:checked'
-        ).value;
+
         // console.log(email, password, optradio);
 
         const result = await fetch("https://evening-beyond-02444.herokuapp.com/login", {
@@ -362,17 +362,19 @@
           body: JSON.stringify({
             email,
             password,
-            optradio,
           }),
         }).then((res) => res.json());
         alert(result.message);
         const user = result.user;
+
         localStorage.setItem("User", JSON.stringify(user));
-        console.log(result.message)
-        if(result.message === "Login Succes"){
+        if(user.role === "student"){
           location.href = "studentPortal.html";
-        }else if(result.message === "Sorry You are not a user" || "Wrong Credentials"){
-          location.href = "home.html";
+        }else if(user.role === "professor"){
+          location.href = "instructor-portal.html";
+        }
+        else if(user.role === "admin"){
+          location.href = "admin.html";
         }
       }
 
