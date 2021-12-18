@@ -103,17 +103,18 @@
                     <i class="fa fa-bell-o"></i> Notifications
                   </h5>
                 </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <i class="fa fa-bullhorn"></i> Notification 1
+                <!-- <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-dark">
+                    <i class="fa fa-bullhorn"></i> No New Notification!
                   </li>
-                  <li class="list-group-item">
-                    <i class="fa fa-bullhorn"></i> Notification 2
-                  </li>
-                  <li class="list-group-item">
-                    <i class="fa fa-bullhorn"></i> Notification 3
-                  </li>
-                </ul>
+                </ul> -->
+                <div class="bg-danger text-white mt-2 p-2">
+                  <h6>
+                    New Course Enrollment Request <br />
+                    Will be Shown Here!
+                  </h6>
+                </div>
+                <div id="ordersContainer" class=""></div>
               </div>
             </div>
           </div>
@@ -150,21 +151,6 @@
               Login
             </a>
 
-            <!-- <a href="login.html" class="nav-link">
-              <i class="fa fa-cogs"></i>
-              Student Portal
-            </a>
-
-            <a href="grades.html" class="nav-link">
-              <i class="fa fa-calculator"></i>
-              Grades
-            </a>
-
-            <a href="courses.html" class="nav-link">
-              <i class="fa fa-bar-chart"></i>
-              Course
-            </a> -->
-
             <a
               href="register.html"
               style="display: block"
@@ -179,6 +165,10 @@
               <i class="fa fa-database"></i>
               Instructor Portal
             </a>
+            <a href="courses-inst.html" class="nav-link">
+              <i class="fa fa-bar-chart"></i>
+              Course Manager
+            </a>
             <a href="roaster.html" class="nav-link">
               <i class="fa fa-comments-o"></i>
               Roaster
@@ -188,6 +178,7 @@
               <i class="fa fa-user-circle"></i>
               Faculty
             </a>
+
             <p
               onclick="handleLogout()"
               style="display: none; cursor: pointer"
@@ -228,8 +219,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <script>
-      const data = localStorage.getItem("User");
-      const user = JSON.parse(data);
+      const info = localStorage.getItem("User");
+      const user = JSON.parse(info);
       // console.log(user)
       if (user) {
         document.getElementById("login").style.display = "none";
@@ -237,9 +228,77 @@
         document.getElementById("logout").style.display = "block";
       }
 
+      const data = fetch(`https://evening-beyond-02444.herokuapp.com/getOrder`)
+        .then((res) => res.json())
+        .then((orders) => displayCourse(orders));
+
+      const displayCourse = (orders) => {
+        const ordersContainer = document.getElementById("ordersContainer");
+        for (let i = 0; i < orders.length; i++) {
+          const order = orders[i];
+          console.log("order", order);
+          const courseTitle = order.courseTitle;
+          const userEmail = order.userEmail;
+          const userName = order.userName;
+          const courseContent = order.courseContent;
+          const courseInformation = order.courseInformation;
+          // console.log(userEmail)
+
+          const orderContainer = document.createElement("div");
+          const accept = document.createElement("accept");
+          accept.type = "button";
+          accept.innerHTML = "Accept";
+          accept.className = "btn btn-outline-success mx-2 mb-4";
+          accept.addEventListener("click", function () {
+            const result = fetch(`https://evening-beyond-02444.herokuapp.com/enrollment`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                courseTitle,
+                userEmail,
+                userName,
+                courseContent,
+                courseInformation
+              }),
+            }).then((res) => res.json());
+            alert("Successfully Accepted");
+            fetch(`https://evening-beyond-02444.herokuapp.com/decline/${userEmail}`).then((res) =>
+              res.json()
+            );
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
+          });
+          const decline = document.createElement("p");
+          decline.type = "button";
+          decline.innerHTML = "Decline";
+          decline.className = "btn btn-outline-danger mx-2";
+          decline.addEventListener("click", function () {
+            const result = fetch(
+              `https://evening-beyond-02444.herokuapp.com/decline/${userEmail}`
+            ).then((res) => res.json());
+            alert("Declined");
+            // eslint-disable-next-line no-restricted-globals
+            location.reload();
+          });
+          const orderInfo = `
+               <div class="card p-3 m-2">
+                    <h4> ${courseTitle}</h4>
+                    <p>Email: <span class="h6">${userEmail}</span> </p>
+                    <p>Name : <span class="h6">${userName}</span> </p>
+                </div>
+            `;
+          orderContainer.innerHTML = orderInfo;
+          orderContainer.appendChild(accept);
+          orderContainer.appendChild(decline);
+          ordersContainer.appendChild(orderContainer);
+        }
+      };
+
       const handleLogout = () => {
         localStorage.clear();
-        location.reload();
+        location.href = "login.html";
       };
       $(".click").click(function () {
         $("#sticky-sidebar").toggle();
