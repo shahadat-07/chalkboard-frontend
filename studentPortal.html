@@ -207,7 +207,9 @@
         document.getElementById("logout").style.display = "block";
       }
       //Fetching user specific enrolled courses
-      const data = fetch(`https://evening-beyond-02444.herokuapp.com/enrollmented/${email}`)
+      const data = fetch(
+        `https://evening-beyond-02444.herokuapp.com/enrollmented/${email}`
+      )
         .then((res) => res.json())
         .then((courses) => displayCourse(courses));
 
@@ -222,7 +224,7 @@
             const courseInformation = course.courseInformation;
 
             const courseContainer = document.createElement("div");
-            courseContainer.className = "col-lg-4";
+            courseContainer.className = "col-lg-6";
             const courseInfo = `
                <div class="card p-3 m-2">
                     <h4> ${courseTitle}</h4>
@@ -247,7 +249,9 @@
       };
 
       //Fetching subject specific assignment
-      const assignmentData = fetch(`https://evening-beyond-02444.herokuapp.com/getAssignment`)
+      const assignmentData = fetch(
+        `https://evening-beyond-02444.herokuapp.com/getAssignment`
+      )
         .then((res) => res.json())
         .then((assignments) => displayAssignment(assignments));
 
@@ -267,6 +271,10 @@
                <div class="card p-3 m-2">
                     <h4> ${courseName}</h4>
                     <p> <span class="h6 mt-2">Assignment:</span> ${assignmentQuestion} </p>
+                    <form  onsubmit="handleAssignment()">
+                      <textarea required></textarea> <br />
+                      <button class="btn btn-outline-dark mt-2" >Submit </button>
+                    </form>
                 </div>
             `;
             assignmentContainer.innerHTML = assignmentInfo;
@@ -296,7 +304,6 @@
           const coursesContainer = document.getElementById(
             "currentCoursesContainer"
           );
-          console.log("courses", courses);
           for (let i = 0; i < courses.length; i++) {
             const course = courses[i];
             const courseTitle = course.courseTitle;
@@ -322,6 +329,10 @@
           courseContainer.innerHTML = courseInfo;
           coursesContainer.appendChild(courseContainer);
         }
+      };
+
+      const handleAssignment = () => {
+        window.alert("Assignment Submitted");
       };
 
       const handleLogout = () => {

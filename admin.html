@@ -132,7 +132,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
 
-      const filter = "";
+    const filter = "";
     const courseData = fetch(`https://evening-beyond-02444.herokuapp.com/courses?search=` + filter)
         .then((res) => res.json())
         .then((courses) => displayCourse(courses));
