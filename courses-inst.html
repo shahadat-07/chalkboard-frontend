@@ -229,6 +229,7 @@
           const userName = order.userName;
           const courseContent = order.courseContent;
           const courseInformation = order.courseInformation;
+          const instructorEmail = order.instructorEmail;
           console.log(userEmail)
 
           const orderContainer = document.createElement("div");
@@ -247,7 +248,8 @@
                 userEmail,
                 userName,
                 courseContent,
-                courseInformation
+                courseInformation,
+                instructorEmail
               }),
             }).then((res) => res.json());
             alert("Successfully Accepted");

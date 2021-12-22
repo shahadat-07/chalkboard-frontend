@@ -181,16 +181,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <script>
-      const filter = "";
-      const courseData = fetch(
-        `https://evening-beyond-02444.herokuapp.com/courses?search=` + filter
-      )
+      const info = localStorage.getItem("User");
+      const user = JSON.parse(info);
+      const instructorEmail = user.email;
+
+      // console.log(user)
+      if (user) {
+        document.getElementById("logout").style.display = "block";
+      }
+
+      const courseData = fetch(`https://evening-beyond-02444.herokuapp.com/findByEmail?search=` + instructorEmail)
         .then((res) => res.json())
         .then((courses) => displayCourse(courses));
 
       const displayCourse = (courses) => {
         const coursesContainer = document.getElementById("courseContainer");
-        for (let i = 0; i < courses.length; i++) {
+        if(courses.length > 0){
+          for (let i = 0; i < courses.length; i++) {
           const course = courses[i];
           const courseTitle = course.courseTitle;
           const roasterOfStudents = course.roasterOfStudents;
@@ -212,14 +219,18 @@
           courseContainer.innerHTML = courseInfo;
           coursesContainer.appendChild(courseContainer);
         }
+        }else{
+          const coursesContainer = document.getElementById("courseContainer");
+          const courseContainer = document.createElement("div");
+          const courseInfo = `
+               <div class="card p-3 m-2">
+                    <h4> No Courses Found</h4>
+                </div>
+            `;
+          courseContainer.innerHTML = courseInfo;
+          coursesContainer.appendChild(courseContainer);
+        }
       };
-
-      const info = localStorage.getItem("User");
-      const user = JSON.parse(info);
-      // console.log(user)
-      if (user) {
-        document.getElementById("logout").style.display = "block";
-      }
 
       const handleLogout = () => {
         localStorage.clear();

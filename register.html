@@ -194,7 +194,8 @@
         for (let i = 0; i < courses.length; i++) {
           const course = courses[i];
           const courseTitle = course.courseTitle;
-          const instructors = course.instructors;
+          const instructor = course.instructor;
+          const instructorEmail = course.instructorEmail;
           const roasterOfStudents = course.roasterOfStudents;
           const description = course.description;
           const lessonSequence = course.lessonSequence;
@@ -216,7 +217,8 @@
                 userEmail,
                 userName,
                 courseContent,
-                courseInformation
+                courseInformation,
+                instructorEmail
               }),
             }).then((res) => res.json());
             alert("Enrollment Request Sent");
@@ -226,7 +228,7 @@
           const courseInfo = `
                <div class="card p-3 m-2">
                     <h4> ${courseTitle}</h4>
-                    <p >Instructors: ${instructors} </p>
+                    <p >Instructors: ${instructor} </p>
                     <p>Description : ${description} </p>
                     <p>Lesson Sequence : ${lessonSequence} </p>
                 </div>
